@@ -1,5 +1,5 @@
 {
-  "name": "@binance/connector",
+  "name": "@aymantaybi/binance-connector-node",
   "version": "2.0.0-rc.4",
   "description": "This is a lightweight library that works as a connector to the Binance public API.",
   "main": "src/index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/binance/binance-connector-node.git"
+    "url": "https://github.com/aymantaybi/binance-connector-node.git"
   },
   "engines": {
     "node": ">=12.22.3",
@@ -24,12 +24,12 @@
     "Binance",
     "API"
   ],
-  "author": "Binance",
+  "author": "aymantaybi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/binance/binance-connector-node/issues"
+    "url": "https://github.com/aymantaybi/binance-connector-node/issues"
   },
-  "homepage": "https://github.com/binance/binance-connector-node#readme",
+  "homepage": "https://github.com/aymantaybi/binance-connector-node#readme",
   "devDependencies": {
     "clean-jsdoc-theme": "^3.2.7",
     "husky": "^6.0.0",
