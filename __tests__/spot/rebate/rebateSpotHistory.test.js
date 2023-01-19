@@ -6,9 +6,9 @@ describe('#rebateSpotHistory', () => {
   it('should return spot rebate history', () => {
     nockMock('/sapi/v1/rebate/taxQuery')(mockResponse)
 
-    return SpotClient.rebateSpotHistory().then(response => {
+    return SpotClient.rebateSpotHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -20,9 +20,9 @@ describe('#rebateSpotHistory', () => {
     }
     nockMock(`/sapi/v1/rebate/taxQuery?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.rebateSpotHistory(parameters).then(response => {
+    return SpotClient.rebateSpotHistory(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

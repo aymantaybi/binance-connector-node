@@ -31,9 +31,9 @@ describe('#bswapRemoveLiquidityPreview', () => {
     const parameters = { recvWindow }
     nockMock(`/sapi/v1/bswap/removeLiquidityPreview?${buildQueryString({ poolId, type, quoteAsset, shareAmount, ...parameters })}`)(mockResponse)
 
-    return SpotClient.bswapRemoveLiquidityPreview(poolId, type, quoteAsset, shareAmount, parameters).then(response => {
+    return SpotClient.bswapRemoveLiquidityPreview(poolId, type, quoteAsset, shareAmount, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

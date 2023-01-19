@@ -11,5 +11,4 @@ client.marginOrder(
   {
     origClientOrderId: ''
   }
-).then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+).then(([error, data, response]) => console.log(error, data, response))

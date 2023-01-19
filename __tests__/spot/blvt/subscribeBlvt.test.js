@@ -30,9 +30,9 @@ describe('#subscribeBlvt', () => {
       cost: amount
     }
     nockPostMock(`/sapi/v1/blvt/subscribe?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.subscribeBlvt(tokenName, amount).then(response => {
+    return SpotClient.subscribeBlvt(tokenName, amount).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

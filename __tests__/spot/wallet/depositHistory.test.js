@@ -9,9 +9,9 @@ describe('#depositHistory', () => {
   it('should return coin information when no parameter attached', () => {
     nockMock('/sapi/v1/capital/deposit/hisrec')(mockResponse)
 
-    return SpotClient.depositHistory().then(response => {
+    return SpotClient.depositHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -22,9 +22,9 @@ describe('#depositHistory', () => {
     }
     nockMock(`/sapi/v1/capital/deposit/hisrec?${buildQueryString({ coin: 'BNB', status: 1 })}`)(mockResponse)
 
-    return SpotClient.depositHistory(parameters).then(response => {
+    return SpotClient.depositHistory(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

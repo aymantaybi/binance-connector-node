@@ -5,9 +5,9 @@ const { mockResponse } = require('../../testUtils/mockData')
 describe('#bswapLiquidity', () => {
   it('should get swap liquidity', () => {
     nockMock('/sapi/v1/bswap/liquidity')(mockResponse)
-    return SpotClient.bswapLiquidity().then(response => {
+    return SpotClient.bswapLiquidity().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

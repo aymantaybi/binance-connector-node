@@ -38,9 +38,9 @@ describe('#newOCOOrder', () => {
     }
     nockPostMock(`/sapi/v1/margin/order/oco?${buildQueryString({ symbol, side, quantity, price, stopPrice, ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginOCOOrder(symbol, side, quantity, price, stopPrice, parameters).then(response => {
+    return SpotClient.marginOCOOrder(symbol, side, quantity, price, stopPrice, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

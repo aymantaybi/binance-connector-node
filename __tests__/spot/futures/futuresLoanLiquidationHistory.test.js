@@ -6,9 +6,9 @@ describe('#futuresLoanLiquidationHistory', () => {
   it('should get cross collateral liquidation history', () => {
     nockMock('/sapi/v1/futures/loan/liquidationHistory')(mockResponse)
 
-    return SpotClient.futuresLoanLiquidationHistory().then(response => {
+    return SpotClient.futuresLoanLiquidationHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

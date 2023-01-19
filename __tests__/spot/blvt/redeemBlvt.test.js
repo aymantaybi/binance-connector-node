@@ -24,9 +24,9 @@ describe('#redeemBlvt', () => {
       amount
     }
     nockPostMock(`/sapi/v1/blvt/redeem?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.redeemBlvt(tokenName, amount).then(response => {
+    return SpotClient.redeemBlvt(tokenName, amount).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

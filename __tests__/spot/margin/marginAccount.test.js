@@ -6,9 +6,9 @@ describe('#marginAccount', () => {
   it('should return margin account details', () => {
     nockMock('/sapi/v1/margin/account')(mockResponse)
 
-    return SpotClient.marginAccount().then(response => {
+    return SpotClient.marginAccount().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

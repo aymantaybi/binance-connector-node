@@ -21,18 +21,18 @@ describe('#convertTradeHistory', () => {
   it('should fetch trade history with optional param', () => {
     nockMock(`/sapi/v1/convert/tradeFlow?${buildQueryString({ startTime, endTime, recvWindow })}`)(mockResponse)
 
-    return SpotClient.convertTradeHistory(startTime, endTime, { recvWindow }).then(response => {
+    return SpotClient.convertTradeHistory(startTime, endTime, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
   it('should fetch trade history', () => {
     nockMock(`/sapi/v1/convert/tradeFlow?${buildQueryString({ startTime, endTime })}`)(mockResponse)
 
-    return SpotClient.convertTradeHistory(startTime, endTime).then(response => {
+    return SpotClient.convertTradeHistory(startTime, endTime).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

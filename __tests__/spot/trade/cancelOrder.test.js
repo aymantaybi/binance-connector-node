@@ -27,9 +27,9 @@ describe('#cancelOrder', () => {
     }
     nockDeleteMock(`/api/v3/order?${buildQueryString({ symbol, ...parameters })}`)(mockResponse)
 
-    return SpotClient.cancelOrder(symbol, parameters).then(response => {
+    return SpotClient.cancelOrder(symbol, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -28,9 +28,9 @@ describe('#miningBonusList', () => {
     }
     nockMock(`/sapi/v1/mining/payment/other?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.miningBonusList(algo, userName).then(response => {
+    return SpotClient.miningBonusList(algo, userName).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

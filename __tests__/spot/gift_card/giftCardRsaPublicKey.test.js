@@ -9,9 +9,9 @@ const {
 describe('#giftCardRsaPublicKey', () => {
   it('should fetch rsa public key without parameter attached', () => {
     nockMock('/sapi/v1/giftcard/cryptography/rsa-public-key')(mockResponse)
-    return SpotClient.giftCardRsaPublicKey().then(response => {
+    return SpotClient.giftCardRsaPublicKey().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -20,9 +20,9 @@ describe('#giftCardRsaPublicKey', () => {
       recvWindow
     }
     nockMock(`/sapi/v1/giftcard/cryptography/rsa-public-key?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.giftCardRsaPublicKey(parameters).then(response => {
+    return SpotClient.giftCardRsaPublicKey(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

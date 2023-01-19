@@ -6,9 +6,9 @@ describe('#tickerPrice', () => {
   it('should return all ticker price', () => {
     nockMock('/api/v3/ticker/price')(mockResponse)
 
-    return SpotClient.tickerPrice().then(response => {
+    return SpotClient.tickerPrice().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -16,9 +16,9 @@ describe('#tickerPrice', () => {
     const symbols = ['BTCUSDT', 'BNBUSDT']
     nockMock(`/api/v3/ticker/price?${buildQueryString({ symbols })}`)(mockResponse)
 
-    return SpotClient.tickerPrice('', symbols).then(response => {
+    return SpotClient.tickerPrice('', symbols).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -26,9 +26,9 @@ describe('#tickerPrice', () => {
     const symbol = 'BTCUSDT'
     nockMock(`/api/v3/ticker/price?symbol=${symbol}`)(mockResponse)
 
-    return SpotClient.tickerPrice(symbol).then(response => {
+    return SpotClient.tickerPrice(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

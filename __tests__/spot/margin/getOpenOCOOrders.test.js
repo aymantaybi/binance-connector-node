@@ -6,9 +6,9 @@ describe('#getMarginOpenOCOOrders', () => {
   it('should return open oco order list', () => {
     nockMock('/sapi/v1/margin/openOrderList')(mockResponse)
 
-    return SpotClient.getMarginOpenOCOOrders().then(response => {
+    return SpotClient.getMarginOpenOCOOrders().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

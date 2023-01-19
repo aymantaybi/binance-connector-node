@@ -13,9 +13,9 @@ describe('#closeListenKey', () => {
   it('should result of delete listen key', () => {
     nockDeleteMock('/api/v3/userDataStream?listenKey=aaa')(mockResponse)
 
-    return SpotClient.closeListenKey('aaa').then(response => {
+    return SpotClient.closeListenKey('aaa').then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

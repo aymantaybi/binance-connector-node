@@ -20,9 +20,9 @@ describe('#nftTransactionHistory', () => {
     const orderType = 0
     nockMock(`/sapi/v1/nft/history/transactions?${buildQueryString({ orderType, ...parameters })}`)(mockResponse)
 
-    return SpotClient.nftTransactionHistory(orderType, parameters).then(response => {
+    return SpotClient.nftTransactionHistory(orderType, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -30,9 +30,9 @@ describe('#nftTransactionHistory', () => {
     const orderType = 0
     nockMock(`/sapi/v1/nft/history/transactions?${buildQueryString({ orderType })}`)(mockResponse)
 
-    return SpotClient.nftTransactionHistory(orderType).then(response => {
+    return SpotClient.nftTransactionHistory(orderType).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -28,9 +28,9 @@ describe('#stakingSetAutoStaking', () => {
       recvWindow
     }
     nockPostMock(`/sapi/v1/staking/setAutoStaking?${buildQueryString({ product, positionId, renewable, ...parameters })}`)(mockResponse)
-    return SpotClient.stakingSetAutoStaking(product, positionId, renewable, parameters).then(response => {
+    return SpotClient.stakingSetAutoStaking(product, positionId, renewable, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

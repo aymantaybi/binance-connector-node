@@ -32,9 +32,9 @@ describe('#managedSubAccountDeposit', () => {
     }
     nockPostMock(`/sapi/v1/managed-subaccount/deposit?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.managedSubAccountDeposit(toEmail, asset, amount, { recvWindow }).then(response => {
+    return SpotClient.managedSubAccountDeposit(toEmail, asset, amount, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

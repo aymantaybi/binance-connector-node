@@ -37,9 +37,9 @@ describe('#isolatedMarginTransfer', () => {
     }
     nockPostMock(`/sapi/v1/margin/isolated/transfer?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.isolatedMarginTransfer(asset, symbol, transFrom, transTo, amount).then(response => {
+    return SpotClient.isolatedMarginTransfer(asset, symbol, transFrom, transTo, amount).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 }

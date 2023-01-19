@@ -32,9 +32,9 @@ describe('#managedSubAccountWithdraw', () => {
     }
     nockPostMock(`/sapi/v1/managed-subaccount/withdraw?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.managedSubAccountWithdraw(fromEmail, asset, amount, { recvWindow }).then(response => {
+    return SpotClient.managedSubAccountWithdraw(fromEmail, asset, amount, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

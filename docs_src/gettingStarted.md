@@ -24,15 +24,14 @@ const apiSecret = ''
 const client = new Spot(apiKey, apiSecret)
 
 // Get account information
-client.account().then(response => client.logger.log(response.data))
+client.account().then(([error, data, response]) => console.log(error, data, response))
 
 // Place a new order
 client.newOrder('BNBUSDT', 'BUY', 'LIMIT', {
   price: '350',
   quantity: 1,
   timeInForce: 'GTC'
-}).then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+}).then(([error, data, response]) => console.log(error, data, response))
 
 ```
 
@@ -60,7 +59,7 @@ const apiKey = ''
 const apiSecret = ''
 const client = new Spot(apiKey, apiSecret)
 
-client.account({ recvWindow: 6000 }).then(response => client.logger.log(response.data))
+client.account({ recvWindow: 6000 }).then(([error, data, response]) => console.log(error, data, response))
 
 ```
 
@@ -89,7 +88,7 @@ const errorOutput = fs.createWriteStream('./logs/stderr.log')
 const logger = new Console({ stdout: output, stderr: errorOutput })
 const client = new Spot('', '', {logger: logger})
 
-client.exchangeInfo().then(response => client.logger.log(response.data))
+client.exchangeInfo().then(([error, data, response]) => console.log(error, data, response))
 // check the output file
 
 ```
@@ -111,7 +110,7 @@ There are 2 types of error may be returned from the API server and the user has 
   ```
   // client initialization is skipped
   client.exchangeInfo({ symbol: 'invalidSymbol' })
-    .then(response => client.logger.log(response.data))
+    .then(([error, data, response]) => console.log(error, data, response))
     .catch(err => {
       client.logger.error(err.response.headers) // full response header
       client.logger.error(err.response.status) // 400

@@ -12,9 +12,9 @@ const {
 describe('#blvtSubscriptionRecord', () => {
   it('should query subscription record without parameter attached', () => {
     nockMock('/sapi/v1/blvt/subscribe/record?')(mockResponse)
-    return SpotClient.blvtSubscriptionRecord().then(response => {
+    return SpotClient.blvtSubscriptionRecord().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -28,9 +28,9 @@ describe('#blvtSubscriptionRecord', () => {
       recvWindow
     }
     nockMock(`/sapi/v1/blvt/subscribe/record?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.blvtSubscriptionRecord(parameters).then(response => {
+    return SpotClient.blvtSubscriptionRecord(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

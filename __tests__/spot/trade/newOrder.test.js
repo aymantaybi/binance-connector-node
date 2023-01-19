@@ -44,9 +44,9 @@ describe('#newOrder', () => {
     }
     nockPostMock(`/api/v3/order?${buildQueryString({ symbol, side, type, ...parameters })}`)(mockResponse)
 
-    return SpotClient.newOrder(symbol, side, type, parameters).then(response => {
+    return SpotClient.newOrder(symbol, side, type, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

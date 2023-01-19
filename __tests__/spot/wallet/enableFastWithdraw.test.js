@@ -6,9 +6,9 @@ describe('#enableFastWithdraw', () => {
   it('should return success', () => {
     nockPostMock('/sapi/v1/account/enableFastWithdrawSwitch')(mockResponse)
 
-    return SpotClient.enableFastWithdraw().then(response => {
+    return SpotClient.enableFastWithdraw().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

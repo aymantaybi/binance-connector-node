@@ -6,9 +6,9 @@ describe('#savingsAccount', () => {
   it('should return saving account', () => {
     nockMock('/sapi/v1/lending/union/account')(mockResponse)
 
-    return SpotClient.savingsAccount().then(response => {
+    return SpotClient.savingsAccount().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -6,9 +6,9 @@ describe('#subAccountSpotSummary', () => {
   it('should return sub account spot summary', () => {
     nockMock('/sapi/v1/sub-account/spotSummary')(mockResponse)
 
-    return SpotClient.subAccountSpotSummary().then(response => {
+    return SpotClient.subAccountSpotSummary().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

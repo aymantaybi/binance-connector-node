@@ -32,9 +32,9 @@ describe('#miningStatisticList', () => {
     }
     nockMock(`/sapi/v1/mining/statistics/user/status?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.miningStatisticList(algo, userName).then(response => {
+    return SpotClient.miningStatisticList(algo, userName).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

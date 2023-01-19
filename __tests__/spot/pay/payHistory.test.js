@@ -6,9 +6,9 @@ describe('#payHistory', () => {
   it('should return pay transactions history', () => {
     nockMock('/sapi/v1/pay/transactions')(mockResponse)
 
-    return SpotClient.payHistory().then(response => {
+    return SpotClient.payHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -19,9 +19,9 @@ describe('#payHistory', () => {
     }
     nockMock(`/sapi/v1/pay/transactions?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.payHistory(parameters).then(response => {
+    return SpotClient.payHistory(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

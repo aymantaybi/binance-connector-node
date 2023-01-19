@@ -16,9 +16,9 @@ describe('#trades', () => {
     const symbol = 'BTCUSDT'
     nockMock(`/api/v3/trades?symbol=${symbol}`)(mockResponse)
 
-    return SpotClient.trades(symbol).then(response => {
+    return SpotClient.trades(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

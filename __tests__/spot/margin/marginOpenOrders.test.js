@@ -11,9 +11,9 @@ describe('#marginOpenOrders', () => {
   it('should return margin open orders when no parameter attached', () => {
     nockMock('/sapi/v1/margin/openOrders')(mockResponse)
 
-    return SpotClient.marginOpenOrders().then(response => {
+    return SpotClient.marginOpenOrders().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -24,9 +24,9 @@ describe('#marginOpenOrders', () => {
     }
     nockMock(`/sapi/v1/margin/openOrders?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginOpenOrders(parameters).then(response => {
+    return SpotClient.marginOpenOrders(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

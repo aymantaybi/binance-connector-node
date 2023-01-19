@@ -12,9 +12,9 @@ describe('#disableIsolatedMarginAccount', () => {
   it('should disable isolated margin account', () => {
     nockDeleteMock(`/sapi/v1/margin/isolated/account?symbol=${symbol}`)(mockResponse)
 
-    return SpotClient.disableIsolatedMarginAccount(symbol).then(response => {
+    return SpotClient.disableIsolatedMarginAccount(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 }

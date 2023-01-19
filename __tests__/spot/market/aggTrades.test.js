@@ -16,9 +16,9 @@ describe('#aggTrades', () => {
     const symbol = 'BTCUSDT'
     nockMock(`/api/v3/aggTrades?symbol=${symbol}`)(mockResponse)
 
-    return SpotClient.aggTrades(symbol).then(response => {
+    return SpotClient.aggTrades(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

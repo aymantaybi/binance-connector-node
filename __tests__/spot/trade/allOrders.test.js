@@ -25,9 +25,9 @@ describe('#allOrders', () => {
     }
     nockMock(`/api/v3/allOrders?${buildQueryString({ symbol, ...parameters })}`)(mockResponse)
 
-    return SpotClient.allOrders(symbol, parameters).then(response => {
+    return SpotClient.allOrders(symbol, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

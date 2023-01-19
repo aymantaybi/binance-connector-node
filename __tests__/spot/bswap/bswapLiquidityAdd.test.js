@@ -37,9 +37,9 @@ describe('#bswapLiquidityAdd', () => {
     }
 
     nockPostMock(`/sapi/v1/bswap/liquidityAdd?${buildQueryString({ recvWindow, ...parameters })}`)(mockResponse)
-    return SpotClient.bswapLiquidityAdd(1, asset, quantity, { recvWindow }).then(response => {
+    return SpotClient.bswapLiquidityAdd(1, asset, quantity, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -6,9 +6,9 @@ describe('#exchangeInfo', () => {
   it('should return exchange info', () => {
     nockMock('/api/v3/exchangeInfo')(mockResponse)
 
-    return SpotClient.exchangeInfo().then(response => {
+    return SpotClient.exchangeInfo().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -16,9 +16,9 @@ describe('#exchangeInfo', () => {
     const symbol = 'BTCUSDT'
     nockMock(`/api/v3/exchangeInfo?symbol=${symbol}`)(mockResponse)
 
-    return SpotClient.exchangeInfo({ symbol }).then(response => {
+    return SpotClient.exchangeInfo({ symbol }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -26,9 +26,9 @@ describe('#exchangeInfo', () => {
     const symbols = ['BTCUSDT', 'ETCUSDT']
     nockMock(`/api/v3/exchangeInfo?${buildQueryString({ symbols })}`)(mockResponse)
 
-    return SpotClient.exchangeInfo({ symbols }).then(response => {
+    return SpotClient.exchangeInfo({ symbols }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

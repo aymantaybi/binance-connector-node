@@ -9,9 +9,9 @@ const {
 describe('#portfolioMarginBankruptcyLoanAmount', () => {
   it('should query portfolio margin bankruptcy loan amount without parameter attached', () => {
     nockMock('/sapi/v1/portfolio/pmLoan')(mockResponse)
-    return SpotClient.portfolioMarginBankruptcyLoanAmount().then(response => {
+    return SpotClient.portfolioMarginBankruptcyLoanAmount().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -20,9 +20,9 @@ describe('#portfolioMarginBankruptcyLoanAmount', () => {
       recvWindow
     }
     nockMock(`/sapi/v1/portfolio/pmLoan?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.portfolioMarginBankruptcyLoanAmount(parameters).then(response => {
+    return SpotClient.portfolioMarginBankruptcyLoanAmount(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

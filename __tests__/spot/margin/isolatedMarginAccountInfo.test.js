@@ -6,9 +6,9 @@ describe('#isolatedMarginAccountInfo', () => {
   it('should get isolated margin account information', () => {
     nockMock('/sapi/v1/margin/isolated/account')(mockResponse)
 
-    return SpotClient.isolatedMarginAccountInfo().then(response => {
+    return SpotClient.isolatedMarginAccountInfo().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -16,9 +16,9 @@ describe('#isolatedMarginAccountInfo', () => {
     const symbols = 'BTCUSDT,BNBUSDT,ADAUSDT'
     nockMock(`/sapi/v1/margin/isolated/account?${buildQueryString({ symbols })}`)(mockResponse)
 
-    return SpotClient.isolatedMarginAccountInfo({ symbols }).then(response => {
+    return SpotClient.isolatedMarginAccountInfo({ symbols }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 }

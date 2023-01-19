@@ -23,9 +23,9 @@ describe('#klines', () => {
     const interval = '1m'
     nockMock(`/api/v3/klines?symbol=${symbol}&interval=${interval}`)(mockResponse)
 
-    return SpotClient.klines(symbol, interval).then(response => {
+    return SpotClient.klines(symbol, interval).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

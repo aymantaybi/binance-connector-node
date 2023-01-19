@@ -26,9 +26,9 @@ describe('#savingsFlexibleUserLeftQuota', () => {
     }
     nockMock(`/sapi/v1/lending/daily/userLeftQuota?${buildQueryString({ productId, ...parameters })}`)(mockResponse)
 
-    return SpotClient.savingsFlexibleUserLeftQuota(productId, parameters).then(response => {
+    return SpotClient.savingsFlexibleUserLeftQuota(productId, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

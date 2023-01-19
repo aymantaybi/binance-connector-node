@@ -9,9 +9,9 @@ const {
 describe('#bswapGetPoolConfig', () => {
   it('should return pool config when no parameter attached', () => {
     nockMock('/sapi/v1/bswap/poolConfigure')(mockResponse)
-    return SpotClient.bswapGetPoolConfig().then(response => {
+    return SpotClient.bswapGetPoolConfig().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -22,9 +22,9 @@ describe('#bswapGetPoolConfig', () => {
     }
 
     nockMock(`/sapi/v1/bswap/poolConfigure?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.bswapGetPoolConfig(parameters).then(response => {
+    return SpotClient.bswapGetPoolConfig(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

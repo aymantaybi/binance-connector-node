@@ -10,9 +10,9 @@ describe('#savingsFlexibleProducts', () => {
   it('should return flexible product list when no parameter attached', () => {
     nockMock('/sapi/v1/lending/daily/product/list')(mockResponse)
 
-    return SpotClient.savingsFlexibleProducts().then(response => {
+    return SpotClient.savingsFlexibleProducts().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -23,9 +23,9 @@ describe('#savingsFlexibleProducts', () => {
     }
     nockMock(`/sapi/v1/lending/daily/product/list?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.savingsFlexibleProducts(parameters).then(response => {
+    return SpotClient.savingsFlexibleProducts(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

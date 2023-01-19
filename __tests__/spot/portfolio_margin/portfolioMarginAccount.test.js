@@ -13,9 +13,9 @@ describe('#portfolioMarginAccount', () => {
     }
     nockMock(`/sapi/v1/portfolio/account?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.portfolioMarginAccount({ recvWindow }).then(response => {
+    return SpotClient.portfolioMarginAccount({ recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

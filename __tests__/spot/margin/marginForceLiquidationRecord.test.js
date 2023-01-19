@@ -6,9 +6,9 @@ describe('#marginForceLiquidationRecord', () => {
   it('should return force liquidation record', () => {
     nockMock('/sapi/v1/margin/forceLiquidationRec')(mockResponse)
 
-    return SpotClient.marginForceLiquidationRecord().then(response => {
+    return SpotClient.marginForceLiquidationRecord().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -6,9 +6,9 @@ describe('#accountStatus', () => {
   it('should return account status', () => {
     nockMock('/sapi/v1/account/status')(mockResponse)
 
-    return SpotClient.accountStatus().then(response => {
+    return SpotClient.accountStatus().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

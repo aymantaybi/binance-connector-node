@@ -29,9 +29,9 @@ describe('#marginBorrow', () => {
     }
     nockPostMock(`/sapi/v1/margin/loan?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginBorrow(asset, amount).then(response => {
+    return SpotClient.marginBorrow(asset, amount).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

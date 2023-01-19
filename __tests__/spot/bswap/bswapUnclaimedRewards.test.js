@@ -8,9 +8,9 @@ const {
 describe('#bswapUnclaimedRewards', () => {
   it('should get unclaimed rewards record', () => {
     nockMock('/sapi/v1/bswap/unclaimedRewards')(mockResponse)
-    return SpotClient.bswapUnclaimedRewards().then(response => {
+    return SpotClient.bswapUnclaimedRewards().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

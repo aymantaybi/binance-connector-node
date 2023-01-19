@@ -8,9 +8,9 @@ const {
 describe('#bswapClaimedHistory', () => {
   it('should get history of claimed rewards.', () => {
     nockMock('/sapi/v1/bswap/claimedHistory')(mockResponse)
-    return SpotClient.bswapClaimedHistory().then(response => {
+    return SpotClient.bswapClaimedHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

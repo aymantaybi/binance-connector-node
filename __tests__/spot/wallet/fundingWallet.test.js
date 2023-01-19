@@ -10,9 +10,9 @@ describe('#fundingWallet', () => {
   it('should return assets from funding wallet', () => {
     nockPostMock('/sapi/v1/asset/get-funding-asset')(mockResponse)
 
-    return SpotClient.fundingWallet().then(response => {
+    return SpotClient.fundingWallet().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -24,9 +24,9 @@ describe('#fundingWallet', () => {
 
     nockPostMock(`/sapi/v1/asset/get-funding-asset?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.fundingWallet(parameters).then(response => {
+    return SpotClient.fundingWallet(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

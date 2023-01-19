@@ -6,9 +6,9 @@ describe('#assetDevidendRecord', () => {
   it('should return asset devidend log without parameter attached', () => {
     nockMock('/sapi/v1/asset/assetDividend')(mockResponse)
 
-    return SpotClient.assetDevidendRecord().then(response => {
+    return SpotClient.assetDevidendRecord().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -20,9 +20,9 @@ describe('#assetDevidendRecord', () => {
 
     nockMock(`/sapi/v1/asset/assetDividend?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.assetDevidendRecord(parameters).then(response => {
+    return SpotClient.assetDevidendRecord(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

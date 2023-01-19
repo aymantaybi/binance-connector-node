@@ -14,9 +14,9 @@ describe('#getMarginOCOOrders', () => {
   it('should return oco order list when no parameter attached', () => {
     nockMock('/sapi/v1/margin/allOrderList')(mockResponse)
 
-    return SpotClient.getMarginOCOOrders().then(response => {
+    return SpotClient.getMarginOCOOrders().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -27,9 +27,9 @@ describe('#getMarginOCOOrders', () => {
     }
     nockMock(`/sapi/v1/margin/allOrderList?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.getMarginOCOOrders(parameters).then(response => {
+    return SpotClient.getMarginOCOOrders(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

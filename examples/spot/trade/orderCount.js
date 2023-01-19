@@ -6,4 +6,4 @@ const apiKey = ''
 const apiSecret = ''
 const client = new Spot(apiKey, apiSecret, { baseURL: 'https://testnet.binance.vision' })
 
-client.orderCount().then(response => client.logger.log(response.data))
+client.orderCount().then(([error, data, response]) => console.log(error, data, response))

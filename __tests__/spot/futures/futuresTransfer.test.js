@@ -36,9 +36,9 @@ describe('#futuresTransfer', () => {
     }
     nockPostMock(`/sapi/v1/futures/transfer?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.futuresTransfer(asset, amount, type).then(response => {
+    return SpotClient.futuresTransfer(asset, amount, type).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

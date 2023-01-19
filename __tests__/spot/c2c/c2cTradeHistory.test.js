@@ -14,9 +14,9 @@ describe('#c2cTradeHistory', () => {
     const tradeType = 'BUY'
     nockMock(`/sapi/v1/c2c/orderMatch/listUserOrderHistory?${buildQueryString({ tradeType, recvWindow })}`)(mockResponse)
 
-    return SpotClient.c2cTradeHistory(tradeType, { recvWindow }).then(response => {
+    return SpotClient.c2cTradeHistory(tradeType, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -24,9 +24,9 @@ describe('#c2cTradeHistory', () => {
     const tradeType = 0
     nockMock(`/sapi/v1/c2c/orderMatch/listUserOrderHistory?${buildQueryString({ tradeType })}`)(mockResponse)
 
-    return SpotClient.c2cTradeHistory(tradeType).then(response => {
+    return SpotClient.c2cTradeHistory(tradeType).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

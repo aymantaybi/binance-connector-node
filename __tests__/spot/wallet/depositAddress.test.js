@@ -22,9 +22,9 @@ describe('#depositAddress', () => {
     }
     nockMock(`/sapi/v1/capital/deposit/address?${buildQueryString({ coin, ...parameters })}`)(mockResponse)
 
-    return SpotClient.depositAddress(coin, parameters).then(response => {
+    return SpotClient.depositAddress(coin, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

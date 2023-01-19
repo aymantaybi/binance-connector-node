@@ -6,9 +6,9 @@ describe('#coinInfo', () => {
   it('should return coin information', () => {
     nockMock('/sapi/v1/capital/config/getall')(mockResponse)
 
-    return SpotClient.coinInfo().then(response => {
+    return SpotClient.coinInfo().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -29,9 +29,9 @@ describe('#futuresTransferHistory', () => {
     }
     nockMock(`/sapi/v1/futures/transfer?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.futuresTransferHistory(asset, startTime).then(response => {
+    return SpotClient.futuresTransferHistory(asset, startTime).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

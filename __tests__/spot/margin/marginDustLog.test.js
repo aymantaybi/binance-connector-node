@@ -6,9 +6,9 @@ describe('#marginDustLog', () => {
   it('should return margin dust log', () => {
     nockMock('/sapi/v1/margin/dribblet')(mockResponse)
 
-    return SpotClient.marginDustLog().then(response => {
+    return SpotClient.marginDustLog().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

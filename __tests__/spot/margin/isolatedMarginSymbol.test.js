@@ -14,9 +14,9 @@ describe('#isolatedMarginSymbol', () => {
   it('should get isolated margin symbol', () => {
     nockMock(`/sapi/v1/margin/isolated/pair?${buildQueryString({ symbol })}`)(mockResponse)
 
-    return SpotClient.isolatedMarginSymbol(symbol).then(response => {
+    return SpotClient.isolatedMarginSymbol(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 }

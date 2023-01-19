@@ -6,9 +6,9 @@ describe('#createMarginListenKey', () => {
   it('should return listen key', () => {
     nockPostMock('/sapi/v1/userDataStream')(mockResponse)
 
-    return SpotClient.createMarginListenKey().then(response => {
+    return SpotClient.createMarginListenKey().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -12,9 +12,9 @@ const {
 describe('#blvtRedemptionRecord', () => {
   it('should query redemption record without parameter attached', () => {
     nockMock('/sapi/v1/blvt/redeem/record')(mockResponse)
-    return SpotClient.blvtRedemptionRecord().then(response => {
+    return SpotClient.blvtRedemptionRecord().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -28,9 +28,9 @@ describe('#blvtRedemptionRecord', () => {
       recvWindow
     }
     nockMock(`/sapi/v1/blvt/redeem/record?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.blvtRedemptionRecord(parameters).then(response => {
+    return SpotClient.blvtRedemptionRecord(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

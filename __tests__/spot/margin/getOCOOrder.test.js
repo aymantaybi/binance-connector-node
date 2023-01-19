@@ -31,9 +31,9 @@ describe('#getMarginOCOOrder', () => {
     }
     nockMock(`/sapi/v1/margin/orderList?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.getMarginOCOOrder(parameters).then(response => {
+    return SpotClient.getMarginOCOOrder(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

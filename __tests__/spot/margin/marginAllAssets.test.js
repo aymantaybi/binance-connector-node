@@ -6,9 +6,9 @@ describe('#marginAllAssets', () => {
   it('should asset details', () => {
     nockMock('/sapi/v1/margin/allAssets')(mockResponse)
 
-    return SpotClient.marginAllAssets().then(response => {
+    return SpotClient.marginAllAssets().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

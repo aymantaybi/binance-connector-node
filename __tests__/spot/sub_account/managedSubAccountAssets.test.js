@@ -16,9 +16,9 @@ describe('#managedSubAccountAssets', () => {
   it('should query managed sub account assets details', () => {
     nockMock(`/sapi/v1/managed-subaccount/asset?${buildQueryString({ email })}`)(mockResponse)
 
-    return SpotClient.managedSubAccountAssets(email).then(response => {
+    return SpotClient.managedSubAccountAssets(email).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

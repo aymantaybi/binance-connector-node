@@ -9,5 +9,4 @@ const client = new Spot(apiKey, apiSecret)
 client.stakingPurchaseProduct('STAKING', 'Axs*90', 10.1, {
   recvWindow: 5000
 })
-  .then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+  .then(([error, data, response]) => console.log(error, data, response))

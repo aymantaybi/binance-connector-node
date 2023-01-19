@@ -32,9 +32,9 @@ describe('#cancelMarginOCOOrder', () => {
     }
     nockDeleteMock(`/sapi/v1/margin/orderList?${buildQueryString({ symbol, ...parameters })}`)(mockResponse)
 
-    return SpotClient.cancelMarginOCOOrder(symbol, parameters).then(response => {
+    return SpotClient.cancelMarginOCOOrder(symbol, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

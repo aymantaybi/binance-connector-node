@@ -12,18 +12,18 @@ describe('#nftWithdrawHistory', () => {
   it('should fetch NFT withdraw history', () => {
     nockMock(`/sapi/v1/nft/history/withdraw?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.nftWithdrawHistory(parameters).then(response => {
+    return SpotClient.nftWithdrawHistory(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
   it('should fetch NFT withdraw history without params', () => {
     nockMock(`/sapi/v1/nft/history/withdraw?${buildQueryString()}`)(mockResponse)
 
-    return SpotClient.nftWithdrawHistory().then(response => {
+    return SpotClient.nftWithdrawHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

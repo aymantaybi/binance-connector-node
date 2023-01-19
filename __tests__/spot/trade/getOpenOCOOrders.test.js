@@ -6,9 +6,9 @@ describe('#getOpenOCOOrders', () => {
   it('should return open oco order list', () => {
     nockMock('/api/v3/openOrderList')(mockResponse)
 
-    return SpotClient.getOpenOCOOrders().then(response => {
+    return SpotClient.getOpenOCOOrders().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

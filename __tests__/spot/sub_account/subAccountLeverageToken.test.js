@@ -28,9 +28,9 @@ describe('#subAccountLeverageToken', () => {
 
     nockPostMock(`/sapi/v1/sub-account/blvt/enable?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountLeverageToken(email, enableBlvt, { recvWindow }).then(response => {
+    return SpotClient.subAccountLeverageToken(email, enableBlvt, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

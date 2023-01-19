@@ -21,9 +21,9 @@ describe('#loanHistory', () => {
     }
     nockMock(`/sapi/v1/loan/income?${buildQueryString({ asset, ...parameters })}`)(mockResponse)
 
-    return SpotClient.loanHistory(asset, parameters).then(response => {
+    return SpotClient.loanHistory(asset, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

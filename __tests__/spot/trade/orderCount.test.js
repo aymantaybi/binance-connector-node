@@ -6,9 +6,9 @@ describe('#orderCount', () => {
   it('should return order count usage', () => {
     nockMock('/api/v3/rateLimit/order')(mockResponse)
 
-    return SpotClient.orderCount().then(response => {
+    return SpotClient.orderCount().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

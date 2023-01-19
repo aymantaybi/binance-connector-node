@@ -40,15 +40,14 @@ const apiSecret = ''
 const client = new Spot(apiKey, apiSecret)
 
 // Get account information
-client.account().then(response => client.logger.log(response.data))
+client.account().then(([error, data, response]) => console.log(error, data, response))
 
 // Place a new order
 client.newOrder('BNBUSDT', 'BUY', 'LIMIT', {
   price: '350',
   quantity: 1,
   timeInForce: 'GTC'
-}).then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+}).then(([error, data, response]) => console.log(error, data, response))
 ```
 
 Please find `examples` folder to check for more endpoints.
@@ -71,7 +70,7 @@ const client = new Spot(apiKey, apiSecret, {
 })
 
 // Get account information
-client.account().then(response => client.logger.log(response.data))
+client.account().then(([error, data, response]) => console.log(error, data, response))
 ```
 
 ### Testnet
@@ -105,7 +104,7 @@ const apiKey = ''
 const apiSecret = ''
 const client = new Spot(apiKey, apiSecret)
 
-client.account({ recvWindow: 2000 }).then(response => client.logger.log(response.data))
+client.account({ recvWindow: 2000 }).then(([error, data, response]) => console.log(error, data, response))
 
 ```
 
@@ -121,7 +120,7 @@ const apiSecret = ''
 const client = new Spot(apiKey, apiSecret, { timeout: 1000 })
 
 client.account()
-  .then(response => client.logger.log(response.data))
+  .then(([error, data, response]) => console.log(error, data, response))
   .catch(error => client.logger.error(error.message))
 ```
 
@@ -169,8 +168,7 @@ const client = new Spot(null, null,
 )
 
 client.time()
-  .then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+  .then(([error, data, response]) => console.log(error, data, response))
 
 ```
 [This comment](https://github.com/axios/axios/issues/925#issuecomment-359982190) provides more details.
@@ -200,7 +198,7 @@ const errorOutput = fs.createWriteStream('./logs/stderr.log')
 const logger = new Console({ stdout: output, stderr: errorOutput })
 const client = new Spot('', '', {logger: logger})
 
-client.exchangeInfo().then(response => client.logger.log(response.data))
+client.exchangeInfo().then(([error, data, response]) => console.log(error, data, response))
 // check the output file
 
 ```
@@ -223,7 +221,7 @@ There are 2 types of error that may be returned from the API server and the user
   ```
   // client initialization is skipped
   client.exchangeInfo({ symbol: 'invalidSymbol' })
-    .then(response => client.logger.log(response.data))
+    .then(([error, data, response]) => console.log(error, data, response))
     .catch(err => {
       client.logger.error(err.response.headers) // full response header
       client.logger.error(err.response.status) // HTTP status code 400

@@ -27,9 +27,9 @@ describe('#subAccountApiAddIp', () => {
     }
     nockPostMock(`/sapi/v1/sub-account/subAccountApi/ipRestriction/ipList?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.subAccountApiAddIp(email, subAccountApiKey, ipAddress, { recvWindow }).then(response => {
+    return SpotClient.subAccountApiAddIp(email, subAccountApiKey, ipAddress, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

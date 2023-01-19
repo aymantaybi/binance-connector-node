@@ -17,7 +17,7 @@ let client
 client = new Spot(apiKey, apiSecret, { baseURL: 'https://testnet.binance.vision', timeout: 1000 })
 
 client.account()
-  .then(response => client.logger.log(response.data))
+  .then(([error, data, response]) => console.log(error, data, response))
   .catch(error => client.logger.error(error.message))
 
 // Below example shows how to sign the request with RSA key. You will have to a few steps:
@@ -38,5 +38,4 @@ client = new Spot(apiKey, apiSecret, {
 })
 
 client.account()
-  .then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+  .then(([error, data, response]) => console.log(error, data, response))

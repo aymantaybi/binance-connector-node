@@ -5,9 +5,9 @@ describe('#ping', () => {
   it('should test API response', () => {
     nockMock('/api/v3/ping')({})
 
-    return SpotClient.ping().then(response => {
+    return SpotClient.ping().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual({})
+      expect(data).toEqual({})
     })
   })
 })

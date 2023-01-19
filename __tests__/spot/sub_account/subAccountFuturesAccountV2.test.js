@@ -36,9 +36,9 @@ describe('#subAccountFuturesAccountV2', () => {
 
     nockMock(`/sapi/v2/sub-account/futures/account?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountFuturesAccountV2(email, futuresType, { recvWindow }).then(response => {
+    return SpotClient.subAccountFuturesAccountV2(email, futuresType, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

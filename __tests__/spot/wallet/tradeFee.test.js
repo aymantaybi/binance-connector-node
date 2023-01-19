@@ -6,9 +6,9 @@ describe('#tradeFee', () => {
   it('should return trade fee', () => {
     nockMock('/sapi/v1/asset/tradeFee')(mockResponse)
 
-    return SpotClient.tradeFee().then(response => {
+    return SpotClient.tradeFee().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

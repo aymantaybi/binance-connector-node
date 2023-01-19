@@ -11,5 +11,4 @@ client.subAccountApiDeleteIp(
   'alice@test.com',
   'subAccountApiKey',
   '1.2.3.4'
-).then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+).then(([error, data, response]) => console.log(error, data, response))

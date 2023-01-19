@@ -17,9 +17,9 @@ describe('#marginTransfer', () => {
     }
     nockPostMock(`/sapi/v1/margin/transfer?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginTransfer(asset, amount, type).then(response => {
+    return SpotClient.marginTransfer(asset, amount, type).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

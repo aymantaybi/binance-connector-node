@@ -6,9 +6,9 @@ describe('#marginAllPairs', () => {
   it('should all pairs details', () => {
     nockMock('/sapi/v1/margin/allPairs')(mockResponse)
 
-    return SpotClient.marginAllPairs().then(response => {
+    return SpotClient.marginAllPairs().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

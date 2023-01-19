@@ -6,9 +6,9 @@ describe('#account', () => {
   it('should return account info', () => {
     nockMock('/api/v3/account')(mockResponse)
 
-    return SpotClient.account().then(response => {
+    return SpotClient.account().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

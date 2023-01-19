@@ -13,9 +13,9 @@ describe('#closeMarginListenKey', () => {
   it('should result of delete listen key', () => {
     nockDeleteMock('/sapi/v1/userDataStream?listenKey=aaa')(mockResponse)
 
-    return SpotClient.closeMarginListenKey('aaa').then(response => {
+    return SpotClient.closeMarginListenKey('aaa').then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

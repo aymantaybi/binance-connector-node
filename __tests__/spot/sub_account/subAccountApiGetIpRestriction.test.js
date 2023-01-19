@@ -24,9 +24,9 @@ describe('#subAccountApiGetIpRestriction', () => {
     }
     nockMock(`/sapi/v1/sub-account/subAccountApi/ipRestriction?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.subAccountApiGetIpRestriction(email, subAccountApiKey, { recvWindow }).then(response => {
+    return SpotClient.subAccountApiGetIpRestriction(email, subAccountApiKey, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

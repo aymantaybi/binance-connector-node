@@ -23,9 +23,9 @@ describe('#marginOrder', () => {
     }
     nockMock(`/sapi/v1/margin/order?${buildQueryString({ symbol, ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginOrder(symbol, parameters).then(response => {
+    return SpotClient.marginOrder(symbol, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

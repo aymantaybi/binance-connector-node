@@ -25,9 +25,9 @@ describe('#subAccountMarginAccount', () => {
 
     nockMock(`/sapi/v1/sub-account/margin/account?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountMarginAccount(email, { recvWindow }).then(response => {
+    return SpotClient.subAccountMarginAccount(email, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

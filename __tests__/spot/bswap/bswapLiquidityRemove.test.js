@@ -49,9 +49,9 @@ describe('#bswapLiquidityRemove', () => {
     }
 
     nockPostMock(`/sapi/v1/bswap/liquidityRemove?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.bswapLiquidityRemove(1, type, asset, shareAmount, { recvWindow }).then(response => {
+    return SpotClient.bswapLiquidityRemove(1, type, asset, shareAmount, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

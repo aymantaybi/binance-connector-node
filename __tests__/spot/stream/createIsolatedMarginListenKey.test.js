@@ -13,9 +13,9 @@ describe('#createIsolatedMarginListenKey', () => {
   it('should return isolated margin listen key', () => {
     const symbol = 'BNBUSDT'
     nockPostMock(`/sapi/v1/userDataStream/isolated?symbol=${symbol}`)(mockResponse)
-    return SpotClient.createIsolatedMarginListenKey(symbol).then(response => {
+    return SpotClient.createIsolatedMarginListenKey(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

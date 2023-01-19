@@ -23,9 +23,9 @@ describe('#uiklines', () => {
     const interval = '1m'
     nockMock(`/api/v3/uiKlines?symbol=${symbol}&interval=${interval}`)(mockResponse)
 
-    return SpotClient.uiklines(symbol, interval).then(response => {
+    return SpotClient.uiklines(symbol, interval).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

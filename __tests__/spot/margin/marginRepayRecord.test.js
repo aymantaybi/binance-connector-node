@@ -22,9 +22,9 @@ describe('#marginRepayRecord', () => {
     }
     nockMock(`/sapi/v1/margin/repay?${buildQueryString({ asset, ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginRepayRecord(asset, parameters).then(response => {
+    return SpotClient.marginRepayRecord(asset, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -6,5 +6,4 @@ const apiKey = ''
 const apiSecret = ''
 const client = new Spot(apiKey, apiSecret, { baseURL: 'https://testnet.binance.vision' })
 
-client.getOpenOCOOrders().then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+client.getOpenOCOOrders().then(([error, data, response]) => console.log(error, data, response))

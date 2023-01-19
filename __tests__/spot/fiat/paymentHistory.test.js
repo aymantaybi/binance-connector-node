@@ -14,9 +14,9 @@ describe('#paymentHistory', () => {
     const transactionType = 0
     nockMock(`/sapi/v1/fiat/payments?${buildQueryString({ transactionType, recvWindow })}`)(mockResponse)
 
-    return SpotClient.paymentHistory(transactionType, { recvWindow }).then(response => {
+    return SpotClient.paymentHistory(transactionType, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -24,9 +24,9 @@ describe('#paymentHistory', () => {
     const transactionType = 0
     nockMock(`/sapi/v1/fiat/payments?${buildQueryString({ transactionType })}`)(mockResponse)
 
-    return SpotClient.paymentHistory(transactionType).then(response => {
+    return SpotClient.paymentHistory(transactionType).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

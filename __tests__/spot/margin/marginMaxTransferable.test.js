@@ -22,9 +22,9 @@ describe('#marginMaxTransferable', () => {
     }
     nockMock(`/sapi/v1/margin/maxTransferable?${buildQueryString({ asset, ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginMaxTransferable(asset, parameters).then(response => {
+    return SpotClient.marginMaxTransferable(asset, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

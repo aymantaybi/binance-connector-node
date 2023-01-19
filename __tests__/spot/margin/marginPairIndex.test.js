@@ -20,9 +20,9 @@ describe('#marginPairIndex', () => {
     }
     nockMock(`/sapi/v1/margin/priceIndex?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginPairIndex(symbol).then(response => {
+    return SpotClient.marginPairIndex(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -11,5 +11,4 @@ client.subAccountUniversalTransfer(
   'USDT_FUTURE', // toAccountType
   'USDT', // asset
   1 // amount
-).then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+).then(([error, data, response]) => console.log(error, data, response))

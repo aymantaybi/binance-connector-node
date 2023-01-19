@@ -6,9 +6,9 @@ describe('#futuresLoanWallet', () => {
   it('should get cross-collateral wallet', () => {
     nockMock('/sapi/v2/futures/loan/wallet')(mockResponse)
 
-    return SpotClient.futuresLoanWallet().then(response => {
+    return SpotClient.futuresLoanWallet().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -55,9 +55,9 @@ describe('#newOCOOrder', () => {
     }
     nockPostMock(`/api/v3/order/oco?${buildQueryString({ symbol, side, quantity, price, stopPrice, ...parameters })}`)(mockResponse)
 
-    return SpotClient.newOCOOrder(symbol, side, quantity, price, stopPrice, parameters).then(response => {
+    return SpotClient.newOCOOrder(symbol, side, quantity, price, stopPrice, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

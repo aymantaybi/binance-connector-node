@@ -6,9 +6,9 @@ describe('#systemStatus', () => {
   it('should return system status', () => {
     nockMock('/sapi/v1/system/status')(mockResponse)
 
-    return SpotClient.systemStatus().then(response => {
+    return SpotClient.systemStatus().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

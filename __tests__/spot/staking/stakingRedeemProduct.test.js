@@ -26,9 +26,9 @@ describe('#stakingRedeemProduct', () => {
       recvWindow
     }
     nockPostMock(`/sapi/v1/staking/redeem?${buildQueryString({ product, productId, ...parameters })}`)(mockResponse)
-    return SpotClient.stakingRedeemProduct(product, productId, parameters).then(response => {
+    return SpotClient.stakingRedeemProduct(product, productId, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

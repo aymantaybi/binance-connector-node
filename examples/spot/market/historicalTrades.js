@@ -6,5 +6,5 @@ const Spot = require('../../../src/spot')
 const apiKey = ''
 const client = new Spot(apiKey, '')
 
-client.historicalTrades('BTCUSDT', { limit: 5 }).then(response => client.logger.log(response.data))
+client.historicalTrades('BTCUSDT', { limit: 5 }).then(([error, data, response]) => console.log(error, data, response))
   .catch(error => client.logger.error(error.message))

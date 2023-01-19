@@ -11,9 +11,9 @@ describe('#subAccountStatus', () => {
   it('should return sub account status without parameter attached', () => {
     nockMock(`/sapi/v1/sub-account/status?${buildQueryString()}`)(mockResponse)
 
-    return SpotClient.subAccountStatus().then(response => {
+    return SpotClient.subAccountStatus().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -24,9 +24,9 @@ describe('#subAccountStatus', () => {
     }
     nockMock(`/sapi/v1/sub-account/status?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountStatus(parameters).then(response => {
+    return SpotClient.subAccountStatus(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

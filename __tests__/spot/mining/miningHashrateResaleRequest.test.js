@@ -43,9 +43,9 @@ describe('#miningHashrateResaleRequest', () => {
     nockPostMock(`/sapi/v1/mining/hash-transfer/config?${buildQueryString(parameters)}`)(mockResponse)
 
     return SpotClient.miningHashrateResaleRequest(userName, algo, startDate, endDate, userName2, hashRate)
-      .then(response => {
+      .then(([, data, response]) => {
         expect(response).toBeDefined()
-        expect(response.data).toEqual(mockResponse)
+        expect(data).toEqual(mockResponse)
       })
   })
 })

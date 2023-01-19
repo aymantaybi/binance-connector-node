@@ -14,9 +14,9 @@ describe('#isolatedMarginTransferHistory', () => {
   it('should get isolated margin account transfer history', () => {
     nockMock(`/sapi/v1/margin/isolated/transfer?${buildQueryString({ symbol })}`)(mockResponse)
 
-    return SpotClient.isolatedMarginTransferHistory(symbol).then(response => {
+    return SpotClient.isolatedMarginTransferHistory(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 }

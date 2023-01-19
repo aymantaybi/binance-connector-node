@@ -22,9 +22,9 @@ describe('#marginMaxBorrowable', () => {
     }
     nockMock(`/sapi/v1/margin/maxBorrowable?${buildQueryString({ asset, ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginMaxBorrowable(asset, parameters).then(response => {
+    return SpotClient.marginMaxBorrowable(asset, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -23,9 +23,9 @@ describe('#accountSnapshot', () => {
     }
     nockMock(`/sapi/v1/accountSnapshot?${buildQueryString({ type, ...parameters })}`)(mockResponse)
 
-    return SpotClient.accountSnapshot(type, parameters).then(response => {
+    return SpotClient.accountSnapshot(type, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -6,9 +6,9 @@ describe('#miningHashrateResaleList', () => {
   it('should return hashrate resale list', () => {
     nockMock('/sapi/v1/mining/hash-transfer/config/details/list')(mockResponse)
 
-    return SpotClient.miningHashrateResaleList().then(response => {
+    return SpotClient.miningHashrateResaleList().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -13,9 +13,9 @@ describe('#renewMarginListenKey', () => {
   it('should renew listen key', () => {
     nockPutMock('/sapi/v1/userDataStream?listenKey=aaa')(mockResponse)
 
-    return SpotClient.renewMarginListenKey('aaa').then(response => {
+    return SpotClient.renewMarginListenKey('aaa').then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

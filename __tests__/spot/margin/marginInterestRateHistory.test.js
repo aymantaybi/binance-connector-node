@@ -21,9 +21,9 @@ describe('#marginInterestRateHistory', () => {
     }
     nockMock(`/sapi/v1/margin/interestRateHistory?${buildQueryString({ asset, ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginInterestRateHistory(asset, parameters).then(response => {
+    return SpotClient.marginInterestRateHistory(asset, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

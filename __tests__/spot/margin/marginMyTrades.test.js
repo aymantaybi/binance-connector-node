@@ -25,9 +25,9 @@ describe('#marginMyTrades', () => {
     }
     nockMock(`/sapi/v1/margin/myTrades?${buildQueryString({ symbol, ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginMyTrades(symbol, parameters).then(response => {
+    return SpotClient.marginMyTrades(symbol, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

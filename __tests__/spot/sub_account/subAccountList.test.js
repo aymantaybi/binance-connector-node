@@ -10,9 +10,9 @@ describe('#subAccountList', () => {
   it('should return sub account list when no parameter attached', () => {
     nockMock('/sapi/v1/sub-account/list')(mockResponse)
 
-    return SpotClient.subAccountList().then(response => {
+    return SpotClient.subAccountList().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -23,9 +23,9 @@ describe('#subAccountList', () => {
     }
     nockMock(`/sapi/v1/sub-account/list?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountList(parameters).then(response => {
+    return SpotClient.subAccountList(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

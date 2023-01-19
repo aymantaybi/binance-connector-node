@@ -25,9 +25,9 @@ describe('#subAccountDepositHistory', () => {
 
     nockMock(`/sapi/v1/capital/deposit/subHisrec?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountDepositHistory(email, { coin, recvWindow }).then(response => {
+    return SpotClient.subAccountDepositHistory(email, { coin, recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -16,18 +16,18 @@ describe('#subAccountUniversalTransferHistory', () => {
 
     nockMock(`/sapi/v1/sub-account/universalTransfer?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountUniversalTransferHistory({ startTime, recvWindow }).then(response => {
+    return SpotClient.subAccountUniversalTransferHistory({ startTime, recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
   it('should get universal transfer history without optional params', () => {
     nockMock(`/sapi/v1/sub-account/universalTransfer?${buildQueryString()}`)(mockResponse)
 
-    return SpotClient.subAccountUniversalTransferHistory().then(response => {
+    return SpotClient.subAccountUniversalTransferHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

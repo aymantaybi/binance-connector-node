@@ -22,9 +22,9 @@ describe('#subAccountAssets', () => {
 
     nockMock(`/sapi/v3/sub-account/assets?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountAssets(email, { recvWindow }).then(response => {
+    return SpotClient.subAccountAssets(email, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

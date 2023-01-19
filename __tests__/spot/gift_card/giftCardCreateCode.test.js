@@ -22,9 +22,9 @@ describe('#giftCardCreateCode', () => {
   it('should return binance code info', () => {
     nockPostMock(`/sapi/v1/giftcard/createCode?${buildQueryString({ token, amount })}`)(mockResponse)
 
-    return SpotClient.giftCardCreateCode(token, amount).then(response => {
+    return SpotClient.giftCardCreateCode(token, amount).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

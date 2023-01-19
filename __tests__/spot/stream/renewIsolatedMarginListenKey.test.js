@@ -17,9 +17,9 @@ describe('#renewIsolatedMarginListenKey', () => {
 
   it('should renew isolated margin listen key', () => {
     nockPutMock(`/sapi/v1/userDataStream/isolated?symbol=${symbol}&listenKey=${(listenKey)}`)(mockResponse)
-    return SpotClient.renewIsolatedMarginListenKey(symbol, listenKey).then(response => {
+    return SpotClient.renewIsolatedMarginListenKey(symbol, listenKey).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

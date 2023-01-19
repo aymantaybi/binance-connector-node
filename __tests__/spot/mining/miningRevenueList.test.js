@@ -32,9 +32,9 @@ describe('#miningRevenueList', () => {
     }
     nockMock(`/sapi/v1/mining/payment/list?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.miningRevenueList(algo, userName).then(response => {
+    return SpotClient.miningRevenueList(algo, userName).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

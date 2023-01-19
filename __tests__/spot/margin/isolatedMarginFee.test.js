@@ -16,18 +16,18 @@ describe('#isolatedMarginFee', () => {
     }
     nockMock(`/sapi/v1/margin/isolatedMarginData?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.isolatedMarginFee(parameters).then(response => {
+    return SpotClient.isolatedMarginFee(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
   it('should get isolated margin fee data without params', () => {
     nockMock(`/sapi/v1/margin/isolatedMarginData?${buildQueryString()}`)(mockResponse)
 
-    return SpotClient.isolatedMarginFee().then(response => {
+    return SpotClient.isolatedMarginFee().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

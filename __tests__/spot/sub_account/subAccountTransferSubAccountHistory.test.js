@@ -11,9 +11,9 @@ describe('#subAccountTransferSubAccountHistory', () => {
   it('should get sub account transfer history when no parameter attached', () => {
     nockMock('/sapi/v1/sub-account/transfer/subUserHistory')(mockResponse)
 
-    return SpotClient.subAccountTransferSubAccountHistory().then(response => {
+    return SpotClient.subAccountTransferSubAccountHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -26,9 +26,9 @@ describe('#subAccountTransferSubAccountHistory', () => {
 
     nockMock(`/sapi/v1/sub-account/transfer/subUserHistory?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountTransferSubAccountHistory(parameters).then(response => {
+    return SpotClient.subAccountTransferSubAccountHistory(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

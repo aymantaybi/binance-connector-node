@@ -6,9 +6,9 @@ describe('#time', () => {
   it('should return server time', () => {
     nockMock('/api/v3/time')(mockResponse)
 
-    return SpotClient.time().then(response => {
+    return SpotClient.time().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

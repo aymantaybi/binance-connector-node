@@ -31,9 +31,9 @@ describe('#savingsInterestHistory', () => {
     }
     nockMock(`/sapi/v1/lending/union/interestHistory?${buildQueryString({ lendingType: 'DAILY', ...parameters })}`)(mockResponse)
 
-    return SpotClient.savingsInterestHistory('DAILY', parameters).then(response => {
+    return SpotClient.savingsInterestHistory('DAILY', parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -29,9 +29,9 @@ describe('#managedSubAccountSnapshot', () => {
     }
     nockMock(`/sapi/v1/managed-subaccount/accountSnapshot?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.managedSubAccountSnapshot(email, type, { recvWindow }).then(response => {
+    return SpotClient.managedSubAccountSnapshot(email, type, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

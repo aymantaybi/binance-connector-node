@@ -28,9 +28,9 @@ describe('#miningHashrateResaleDetail', () => {
     }
     nockMock(`/sapi/v1/mining/hash-transfer/profit/details?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.miningHashrateResaleDetail(configId, userName).then(response => {
+    return SpotClient.miningHashrateResaleDetail(configId, userName).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

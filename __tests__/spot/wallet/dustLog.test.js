@@ -6,9 +6,9 @@ describe('#dustLog', () => {
   it('should return account dust log', () => {
     nockMock('/sapi/v1/asset/dribblet')(mockResponse)
 
-    return SpotClient.dustLog().then(response => {
+    return SpotClient.dustLog().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

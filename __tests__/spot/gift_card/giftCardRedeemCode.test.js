@@ -18,9 +18,9 @@ describe('#giftCardRedeemCode', () => {
   it('should redeem binance code', () => {
     nockPostMock(`/sapi/v1/giftcard/redeemCode?${buildQueryString({ code })}`)(mockResponse)
 
-    return SpotClient.giftCardRedeemCode(code).then(response => {
+    return SpotClient.giftCardRedeemCode(code).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

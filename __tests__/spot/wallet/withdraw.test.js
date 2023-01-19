@@ -36,9 +36,9 @@ describe('#withdraw', () => {
     }
     nockPostMock(`/sapi/v1/capital/withdraw/apply?${buildQueryString({ coin: 'BNB', address: 'address', amount: 1, ...parameters })}`)(mockResponse)
 
-    return SpotClient.withdraw('BNB', 'address', 1, parameters).then(response => {
+    return SpotClient.withdraw('BNB', 'address', 1, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

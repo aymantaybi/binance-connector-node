@@ -14,9 +14,9 @@ describe('#marginOrderCount', () => {
   it('should get margin order count usage', () => {
     nockMock(`/sapi/v1/margin/rateLimit/order?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.marginOrderCount(parameters).then(response => {
+    return SpotClient.marginOrderCount(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -8,9 +8,9 @@ const {
 describe('#bswapClaimRewards', () => {
   it('should post to claim swap rewards or liquidity rewards', () => {
     nockPostMock('/sapi/v1/bswap/claimRewards')(mockResponse)
-    return SpotClient.bswapClaimRewards().then(response => {
+    return SpotClient.bswapClaimRewards().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

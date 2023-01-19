@@ -28,9 +28,9 @@ describe('#userUniversalTransfer', () => {
     }
     nockPostMock(`/sapi/v1/asset/transfer?${buildQueryString({ type, asset, amount, ...parameters })}`)(mockResponse)
 
-    return SpotClient.userUniversalTransfer(type, asset, amount, parameters).then(response => {
+    return SpotClient.userUniversalTransfer(type, asset, amount, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

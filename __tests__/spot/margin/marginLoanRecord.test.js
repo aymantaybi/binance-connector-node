@@ -22,9 +22,9 @@ describe('#marginLoanRecord', () => {
     }
     nockMock(`/sapi/v1/margin/loan?${buildQueryString({ asset, ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginLoanRecord(asset, parameters).then(response => {
+    return SpotClient.marginLoanRecord(asset, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

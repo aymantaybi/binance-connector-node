@@ -10,9 +10,9 @@ describe('#marginInterestHistory', () => {
   it('should return margin interest history record when no parameter attached', () => {
     nockMock('/sapi/v1/margin/interestHistory')(mockResponse)
 
-    return SpotClient.marginInterestHistory().then(response => {
+    return SpotClient.marginInterestHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
   it('should return margin interest history record', () => {
@@ -23,9 +23,9 @@ describe('#marginInterestHistory', () => {
     }
     nockMock(`/sapi/v1/margin/interestHistory?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginInterestHistory(parameters).then(response => {
+    return SpotClient.marginInterestHistory(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

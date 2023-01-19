@@ -30,9 +30,9 @@ describe('#savingsProductList', () => {
     }
     nockMock(`/sapi/v1/lending/project/list?${buildQueryString({ type: 'REGULAR', ...parameters })}`)(mockResponse)
 
-    return SpotClient.savingsProductList('REGULAR', parameters).then(response => {
+    return SpotClient.savingsProductList('REGULAR', parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -5,5 +5,4 @@ const Spot = require('../../../src/spot')
 const apiKey = ''
 const client = new Spot(apiKey)
 
-client.miningCoinList().then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+client.miningCoinList().then(([error, data, response]) => console.log(error, data, response))

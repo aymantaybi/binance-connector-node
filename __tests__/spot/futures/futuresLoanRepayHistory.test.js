@@ -11,9 +11,9 @@ describe('#futuresLoanRepayHistory', () => {
   it('should get cross-collateral repay history without parameter attached', () => {
     nockMock('/sapi/v1/futures/loan/repay/history')(mockResponse)
 
-    return SpotClient.futuresLoanRepayHistory().then(response => {
+    return SpotClient.futuresLoanRepayHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -24,9 +24,9 @@ describe('#futuresLoanRepayHistory', () => {
     }
     nockMock(`/sapi/v1/futures/loan/repay/history?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.futuresLoanRepayHistory(parameters).then(response => {
+    return SpotClient.futuresLoanRepayHistory(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

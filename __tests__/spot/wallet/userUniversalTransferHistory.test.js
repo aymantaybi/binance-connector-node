@@ -21,9 +21,9 @@ describe('#userUniversalTransferHistory', () => {
     }
     nockMock(`/sapi/v1/asset/transfer?${buildQueryString({ type, ...parameters })}`)(mockResponse)
 
-    return SpotClient.userUniversalTransferHistory(type, parameters).then(response => {
+    return SpotClient.userUniversalTransferHistory(type, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

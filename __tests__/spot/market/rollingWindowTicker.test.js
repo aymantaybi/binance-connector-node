@@ -7,9 +7,9 @@ describe('#rollingWindowTicker', () => {
     const symbols = ['BTCUSDT', 'BNBUSDT']
     nockMock(`/api/v3/ticker?${buildQueryString({ symbols })}`)(mockResponse)
 
-    return SpotClient.rollingWindowTicker('', symbols).then(response => {
+    return SpotClient.rollingWindowTicker('', symbols).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -17,9 +17,9 @@ describe('#rollingWindowTicker', () => {
     const symbol = 'BTCUSDT'
     nockMock(`/api/v3/ticker?symbol=${symbol}`)(mockResponse)
 
-    return SpotClient.rollingWindowTicker(symbol).then(response => {
+    return SpotClient.rollingWindowTicker(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -28,9 +28,9 @@ describe('#rollingWindowTicker', () => {
     const windowSize = '1d'
     nockMock(`/api/v3/ticker?symbol=${symbol}&windowSize=${windowSize}`)(mockResponse)
 
-    return SpotClient.rollingWindowTicker(symbol, [], { windowSize }).then(response => {
+    return SpotClient.rollingWindowTicker(symbol, [], { windowSize }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

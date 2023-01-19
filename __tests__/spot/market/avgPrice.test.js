@@ -16,9 +16,9 @@ describe('#avgPrice', () => {
     const symbol = 'BTCUSDT'
     nockMock(`/api/v3/avgPrice?symbol=${symbol}`)(mockResponse)
 
-    return SpotClient.avgPrice(symbol).then(response => {
+    return SpotClient.avgPrice(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -14,9 +14,9 @@ describe('#getOCOOrder', () => {
   it('should return oco order details when no parameter attached', () => {
     nockMock('/api/v3/orderList')(mockResponse)
 
-    return SpotClient.getOCOOrder().then(response => {
+    return SpotClient.getOCOOrder().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -27,9 +27,9 @@ describe('#getOCOOrder', () => {
     }
     nockMock(`/api/v3/orderList?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.getOCOOrder(parameters).then(response => {
+    return SpotClient.getOCOOrder(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

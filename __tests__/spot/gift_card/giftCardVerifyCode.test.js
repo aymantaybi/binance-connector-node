@@ -18,9 +18,9 @@ describe('#giftCardVerifyCode', () => {
   it('should verify reference number', () => {
     nockMock(`/sapi/v1/giftcard/verify?${buildQueryString({ referenceNo })}`)(mockResponse)
 
-    return SpotClient.giftCardVerifyCode(referenceNo).then(response => {
+    return SpotClient.giftCardVerifyCode(referenceNo).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

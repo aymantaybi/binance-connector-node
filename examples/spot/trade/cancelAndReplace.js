@@ -11,5 +11,4 @@ client.cancelAndReplace('BNBUSDT', 'BUY', 'LIMIT', 'STOP_ON_FAILURE', {
   quantity: 1,
   timeInForce: 'GTC',
   cancelOrderId: 12
-}).then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+}).then(([error, data, response]) => console.log(error, data, response))

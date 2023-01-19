@@ -22,9 +22,9 @@ describe('#stakingProductQuota', () => {
 
   it('should get personal left quota of staking product', () => {
     nockMock(`/sapi/v1/staking/personalLeftQuota?${buildQueryString({ product, productId })}`)(mockResponse)
-    return SpotClient.stakingProductQuota(product, productId).then(response => {
+    return SpotClient.stakingProductQuota(product, productId).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

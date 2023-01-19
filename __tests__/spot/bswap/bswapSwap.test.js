@@ -37,9 +37,9 @@ describe('#bswapRequestQuote', () => {
     }
 
     nockPostMock(`/sapi/v1/bswap/swap?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.bswapSwap(quoteAsset, baseAsset, quoteQty, { recvWindow }).then(response => {
+    return SpotClient.bswapSwap(quoteAsset, baseAsset, quoteQty, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

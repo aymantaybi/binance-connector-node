@@ -26,9 +26,9 @@ describe('#stakingHistory', () => {
       recvWindow
     }
     nockMock(`/sapi/v1/staking/stakingRecord?${buildQueryString({ product, txnType, ...parameters })}`)(mockResponse)
-    return SpotClient.stakingHistory(product, txnType, parameters).then(response => {
+    return SpotClient.stakingHistory(product, txnType, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -6,9 +6,9 @@ describe('#userAsset', () => {
   it('should return assets', () => {
     nockPostMock('/sapi/v3/asset/getUserAsset')(mockResponse)
 
-    return SpotClient.userAsset().then(response => {
+    return SpotClient.userAsset().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

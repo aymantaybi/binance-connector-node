@@ -16,9 +16,9 @@ describe('#savingsCustomizedPosition', () => {
   it('should return all project position', () => {
     nockMock('/sapi/v1/lending/project/position/list')(mockResponse)
 
-    return SpotClient.savingsCustomizedPosition().then(response => {
+    return SpotClient.savingsCustomizedPosition().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -30,9 +30,9 @@ describe('#savingsCustomizedPosition', () => {
     }
     nockMock(`/sapi/v1/lending/project/position/list?${buildQueryString({ asset: 'BNB', ...parameters })}`)(mockResponse)
 
-    return SpotClient.savingsCustomizedPosition('BNB', parameters).then(response => {
+    return SpotClient.savingsCustomizedPosition('BNB', parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

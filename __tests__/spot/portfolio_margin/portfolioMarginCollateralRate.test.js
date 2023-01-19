@@ -8,9 +8,9 @@ const {
 describe('#portfolioMarginCollateralRate', () => {
   it('should portfolio margin collateral rate', () => {
     nockMock('/sapi/v1/portfolio/collateralRate')(mockResponse)
-    return SpotClient.portfolioMarginCollateralRate().then(response => {
+    return SpotClient.portfolioMarginCollateralRate().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

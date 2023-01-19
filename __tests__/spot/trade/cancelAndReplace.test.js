@@ -53,9 +53,9 @@ describe('#cancelAndReplace', () => {
     }
     nockPostMock(`/api/v3/order/cancelReplace?${buildQueryString({ symbol, side, type, cancelReplaceMode, ...parameters })}`)(mockResponse)
 
-    return SpotClient.cancelAndReplace(symbol, side, type, cancelReplaceMode, parameters).then(response => {
+    return SpotClient.cancelAndReplace(symbol, side, type, cancelReplaceMode, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

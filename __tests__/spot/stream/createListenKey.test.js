@@ -6,9 +6,9 @@ describe('#createListenKey', () => {
   it('should return listen key', () => {
     nockPostMock('/api/v3/userDataStream')(mockResponse)
 
-    return SpotClient.createListenKey().then(response => {
+    return SpotClient.createListenKey().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

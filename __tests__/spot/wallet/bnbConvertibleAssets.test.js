@@ -8,18 +8,18 @@ describe('# bnbConvertibleAssets', () => {
 
     nockPostMock(`/sapi/v1/asset/dust-btc?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.bnbConvertibleAssets(parameters).then(response => {
+    return SpotClient.bnbConvertibleAssets(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
   it('should return bnb convertible assets', () => {
     nockPostMock(`/sapi/v1/asset/dust-btc?${buildQueryString()}`)(mockResponse)
 
-    return SpotClient.bnbConvertibleAssets().then(response => {
+    return SpotClient.bnbConvertibleAssets().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

@@ -14,9 +14,9 @@ describe('#dustTransfer', () => {
     const asset = 'ETC'
     nockPostMock(`/sapi/v1/asset/dust?${buildQueryString({ asset })}`)(mockResponse)
 
-    return SpotClient.dustTransfer(asset).then(response => {
+    return SpotClient.dustTransfer(asset).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -25,9 +25,9 @@ describe('#dustTransfer', () => {
     const assetString = 'ETC,USDT'
     nockPostMock(`/sapi/v1/asset/dust?${buildQueryString({ asset: assetString })}`)(mockResponse)
 
-    return SpotClient.dustTransfer(asset).then(response => {
+    return SpotClient.dustTransfer(asset).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

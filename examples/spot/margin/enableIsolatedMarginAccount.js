@@ -6,5 +6,4 @@ const apiKey = ''
 const apiSecret = ''
 const client = new Spot(apiKey, apiSecret)
 
-client.enableIsolatedMarginAccount('BTCUSDT').then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+client.enableIsolatedMarginAccount('BTCUSDT').then(([error, data, response]) => console.log(error, data, response))

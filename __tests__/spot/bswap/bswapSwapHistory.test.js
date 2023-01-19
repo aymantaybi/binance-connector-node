@@ -11,9 +11,9 @@ const {
 describe('#bswapSwapHistory', () => {
   it('should get swap history without parameter attached', () => {
     nockMock('/sapi/v1/bswap/swap')(mockResponse)
-    return SpotClient.bswapSwapHistory().then(response => {
+    return SpotClient.bswapSwapHistory().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 
@@ -27,9 +27,9 @@ describe('#bswapSwapHistory', () => {
     }
 
     nockMock(`/sapi/v1/bswap/swap?${buildQueryString({ ...parameters })}`)(mockResponse)
-    return SpotClient.bswapSwapHistory(parameters).then(response => {
+    return SpotClient.bswapSwapHistory(parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

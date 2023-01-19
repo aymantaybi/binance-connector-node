@@ -20,9 +20,9 @@ describe('#miningAccountEarning', () => {
     }
     nockMock(`/sapi/v1/mining/payment/uid?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.miningAccountEarning(algo, { recvWindow }).then(response => {
+    return SpotClient.miningAccountEarning(algo, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

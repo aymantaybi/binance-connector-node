@@ -20,9 +20,9 @@ describe('#stakingProductList', () => {
       recvWindow
     }
     nockMock(`/sapi/v1/staking/productList?${buildQueryString({ product, ...parameters })}`)(mockResponse)
-    return SpotClient.stakingProductList(product, parameters).then(response => {
+    return SpotClient.stakingProductList(product, parameters).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

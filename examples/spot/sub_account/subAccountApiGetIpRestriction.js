@@ -10,5 +10,4 @@ const client = new Spot(apiKey, apiSecret)
 client.subAccountApiGetIpRestriction(
   'alice@test.com',
   'subAccountApiKey'
-).then(response => client.logger.log(response.data))
-  .catch(error => client.logger.error(error))
+).then(([error, data, response]) => console.log(error, data, response))

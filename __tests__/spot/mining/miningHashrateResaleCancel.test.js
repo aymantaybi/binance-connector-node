@@ -28,9 +28,9 @@ describe('#miningHashrateResaleCancel', () => {
     }
     nockPostMock(`/sapi/v1/mining/hash-transfer/config/cancel?${buildQueryString(parameters)}`)(mockResponse)
 
-    return SpotClient.miningHashrateResaleCancel(configId, userName).then(response => {
+    return SpotClient.miningHashrateResaleCancel(configId, userName).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

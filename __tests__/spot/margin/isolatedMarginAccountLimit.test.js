@@ -6,9 +6,9 @@ describe('#isolatedMarginAccountLimit', () => {
   it('should get isolated margin account limit', () => {
     nockMock('/sapi/v1/margin/isolated/accountLimit')(mockResponse)
 
-    return SpotClient.isolatedMarginAccountLimit().then(response => {
+    return SpotClient.isolatedMarginAccountLimit().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 }

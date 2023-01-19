@@ -48,9 +48,9 @@ describe('#subAccountFuturesTransfer', () => {
 
     nockPostMock(`/sapi/v1/sub-account/futures/transfer?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.subAccountFuturesTransfer(email, asset, amount, 1, { recvWindow }).then(response => {
+    return SpotClient.subAccountFuturesTransfer(email, asset, amount, 1, { recvWindow }).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

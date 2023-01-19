@@ -17,9 +17,9 @@ describe('#closeIsolatedMarginListenKey', () => {
 
   it('should close isolated margin listen key', () => {
     nockDeleteMock(`/sapi/v1/userDataStream/isolated?symbol=${symbol}&listenKey=${(listenKey)}`)(mockResponse)
-    return SpotClient.closeIsolatedMarginListenKey(symbol, listenKey).then(response => {
+    return SpotClient.closeIsolatedMarginListenKey(symbol, listenKey).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

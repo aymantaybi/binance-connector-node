@@ -20,9 +20,9 @@ describe('#marginPair', () => {
     }
     nockMock(`/sapi/v1/margin/pair?${buildQueryString({ ...parameters })}`)(mockResponse)
 
-    return SpotClient.marginPair(symbol).then(response => {
+    return SpotClient.marginPair(symbol).then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 })

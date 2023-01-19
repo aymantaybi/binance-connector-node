@@ -6,9 +6,9 @@ describe('#isolatedMarginAllSymbols', () => {
   it('should get all isolated margin symbols', () => {
     nockMock('/sapi/v1/margin/isolated/allPairs')(mockResponse)
 
-    return SpotClient.isolatedMarginAllSymbols().then(response => {
+    return SpotClient.isolatedMarginAllSymbols().then(([, data, response]) => {
       expect(response).toBeDefined()
-      expect(response.data).toEqual(mockResponse)
+      expect(data).toEqual(mockResponse)
     })
   })
 }
